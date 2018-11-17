@@ -89,7 +89,7 @@ var painting = new Location(
 );
 var east = new Location(
     "at the center of the main room, looking towards a red wall.",
-    "Against the wall in the center of the room is a modern looking sofa. To the right of the sofa is a tall lamp. In the left corner is a table and a potted palm.",
+    "Against the wall in the center of the room is a modern looking couch. To the right of the couch is a tall lamp. In the left corner is a table and a potted palm.",
     ["lamp","couch","corner"],
     [],
     null,
@@ -101,14 +101,14 @@ var lamp = new Location(
     "The lamp is nothing of interest but you notice on the ground next to it is a small white box. You also notice a green marble on the baseboard of the green wall.",
     [],
     [],
-    "south"
+    "east"
 );
 var couch = new Location(
     "standing in front of the couch.",
     "The seat cushions don't come off, but there are two back cushions.",
     ["under couch"],
     ["cushion"],
-    "south"    
+    "east"    
 );
 var undercouch = new Location(
     "on the ground, looking under the couch.",
@@ -122,14 +122,14 @@ var corner = new Location(
     "Directly next to the couch is a small side table with nothing on top. Beside that is a potted palm. You notice there's an oddly shaped clump of dirt on top of the soil. You also notice a green marble on one of the palm leaves.",
     ["undertable","behindplant"],
     [],
-    "south"
+    "east"
 );
 var undertable = new Location(
     "on the ground, looking up at the bottom of the table.",
     "Underneath the table, there's an orange piece of paper stuck to the top. You also notice a white marble on the ground towards the back.",
     [],
     [],
-    "south"
+    "corner"
 );
 var behindplant = new Location(
     "near the blue wall, looking behind the plant.",

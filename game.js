@@ -13,13 +13,15 @@ function gameFunction(){
         message: "What do you do?",
         name: "verb"
         }]).then(function(response){
-            var verb = /look|back|turn|inspect|use|take|help/i.exec(response.verb)
+            var verb = /look|back|turn|inspect|use|take|help|quit/i.exec(response.verb)
+            var object = null;
             if (verb){
                 verb = verb[0]
-            }
-            var object = null;
-            if (response.verb.split(" ").length > 1){
-                object = response.verb.split(" ").splice(0).join(" ")
+                if (response.verb.split(" ").length > 1){                    
+                    object = response.verb.split(" ")
+                    object.shift()
+                    object = object.join(" ")
+                }
             }
             if (verb == "look"){                
                 lookFunction();            
@@ -40,10 +42,14 @@ function gameFunction(){
                 console.log("INSPECT [something] -- examines an inventory item or something in your current location")
                 console.log("USE [item] ----------- uses an item from your inventory")
                 console.log("TAKE [item] ---------- adds an item to your inventory")                
+            } else if (verb == "quit"){
+                console.log("Bye :)")
             } else {
                 console.log("I'm not sure what you mean. For a list of commands type HELP")
             }
-            gameFunction();
+            if (verb != "quit"){
+                gameFunction();
+            }
         })
 }
 
@@ -54,11 +60,11 @@ function fix(word){ //function to convert words to be all lowercase and without 
 }
 
 function lookFunction(){    
-        console.log(location[currentLocation]["description"]);
+        console.log(location[fix(currentLocation)]["description"]);
 }
 
 function backFunction(){
-    var destination = location[currentLocation]["back"];
+    var destination = location[fix(currentLocation)]["back"];
     moveFunction(destination);
 }
 
@@ -89,13 +95,25 @@ function whereFunction(){
 function inspectFunction(obj){
     var available = location[currentLocation]["locations"];
     for (var i=0;i<available.length;i++){
-        var test = RegExp(available[i])
-        break;
+        var test = RegExp(available[i]).exec(obj)
+        if (test){
+            test = test[0];
+            break;
+        }
     }
     if (test){
-        
+        moveFunction(obj);
+        return;
+    } else {
+        available = location[currentLocation]["interactables"];
+        for (var i=0;i<available.length;i++){
+            var test = RegExp(available[i]).exec(obj)
+            break;
+        }
     }
-    available = location[currentLocation]["interactables"];
+    if (test){
+        console.log(interactable[test]["description"])
+    }
 }
 
 function useFunction(){

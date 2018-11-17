@@ -30,3 +30,18 @@ var door = new Interactable("It's locked.");
 var topdrawer = new Interactable("It's locked.");
 var bottomdrawer = new Interactable("Inside you see an empty glass.");
 var cushion = new Interactable("Behind the cushion you find a long rod with a hook at the end. You also find a white marble.");
+
+module.exports = {
+    bluebook: bluebook,
+    greenbook: greenbook,
+    redbook: redbook,
+    bluedrawer: bluedrawer,
+    greendrawer: greendrawer,
+    yellowdrawer: yellowdrawer,
+    orangedrawer: orangedrawer,
+    floorlight: floorlight,
+    door: door,
+    topdrawer: topdrawer,
+    bottomdrawer: bottomdrawer,
+    cushion: cushion,
+}
